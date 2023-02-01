@@ -91,4 +91,32 @@ window.addEventListener("DOMContentLoaded", () => {
    }
 
    setClock(".timer", deadline);
+
+   // Modal
+
+   const modalTrigger = document.querySelectorAll("       [data-modal]"),
+      modal = document.querySelector(".modal"),
+      modalCloseBtn = document.querySelector("[data-close]");
+
+   function closeModal() {
+      modal.classList.toggle("show");
+      document.body.style.overflow = "";
+   }
+   modalTrigger.forEach((btn) => {
+      btn.addEventListener("click", closeModal);
+   });
+
+   modalCloseBtn.addEventListener("click", closeModal);
+
+   modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+         closeModal();
+      }
+   });
+
+   document.addEventListener("keydown", (e) => {
+      if (e.code === "Escape" && modal.classList.contains("show")) {
+         closeModal();
+      }
+   });
 });
